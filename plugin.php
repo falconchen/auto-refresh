@@ -73,9 +73,9 @@ function auto_refresh_settings_callback() {
 add_action('wp_head', 'auto_refresh_meta_tag');
 function auto_refresh_meta_tag() {
     $auto_refresh_seconds = get_option('auto_refresh_seconds', 30);
-
+    
     // Check if the request parameter contains "refresh=no"
-    if (isset($_GET['refresh']) && $_GET['refresh'] === 'no') {
+    if ( ($auto_refresh_seconds <= 0) || ( isset($_GET['refresh']) && $_GET['refresh'] === 'no') ) {
         return; // Do not add the meta tag for auto-refresh
     }
 
